@@ -5,36 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>DGN opdracht</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="./lightbox-nav/style.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <div class="content">
-      <a id="lightbox" class="lightbox" rel="lightbox" onclick="openModal()"
+    <div class="lightbox-anchor">
+      <a
+        id="lightbox"
+        class="lightbox "
+        href="./lightbox-nav/pagina1.html"
+        rel="lightbox"
+        onclick="openModal()"
         >Open lightbox</a
       >
     </div>
-    <div id="mymodal" class="modal">
-      <div id="myModalContent" class="modal-content">
+    <div id="mymodal" class="modal ">
+      <div id="myModalContent" class="modal-content shadow-box-animation">
         <div class="button-container">
           <div id="cancel-button" class="green-button" onclick="closeModal()">
             <?xml version="1.0" encoding="iso-8859-1"?>
-            <svg
-              version="1.1"
-              id="Layer_1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              x="0px"
-              y="0px"
-              viewBox="0 0 426.667 426.667"
-              style="enable-background:new 0 0 426.667 426.667;"
-              xml:space="preserve"
-            >
+            <svg x="0px" y="0px" viewBox="0 0 426.667 426.667">
               <path
-                style="fill:#F05228;"
                 d="M213.333,0C95.514,0,0,95.514,0,213.333s95.514,213.333,213.333,213.333
               s213.333-95.514,213.333-213.333S331.153,0,213.333,0z M330.995,276.689l-54.302,54.306l-63.36-63.356l-63.36,63.36l-54.302-54.31
               l63.356-63.356l-63.356-63.36l54.302-54.302l63.36,63.356l63.36-63.356l54.302,54.302l-63.356,63.36L330.995,276.689z"
@@ -44,11 +38,13 @@
           </div>
         </div>
         <div id="modalpage"></div>
-        <a rel="nofollow" href="http://www.functravel.com/" onclick="navigate()"
-          >Naar pagina <span id="nav-page"></span
-        ></a>
+        <div class="nav-page-container">
+          <a id="nav-anchor" href="#" onclick="navigate()"
+            >Page <span id="nav-page"></span
+          ></a>
+        </div>
       </div>
     </div>
-    <script src="index.js"></script>
+    <script src="./lightbox-nav/index.js"></script>
   </body>
 </html>

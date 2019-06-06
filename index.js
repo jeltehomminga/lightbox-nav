@@ -1,28 +1,24 @@
 //set intial state for browser navigation
+let htmlPage1 = ''
+let htmlPage2 = ''
 let indexState = { navPage: '0' }
+
 navPage = indexState.navPage
-title = `index`
-path = `/index.html`
+let title = `index`
+let path = `/index.html`
 history.pushState(indexState, title, path)
 
 //navigate and fetch pages
-const navigate = newPage => {
+const navigate = (newPage, pop) => {
   event.preventDefault()
   if (newPage === '0') closeModal(), (navPage = 0)
   else {
-    navPage = newPage && newPage !== '0' ? newPage : navPage === '1' ? '2' : '1'
-    fetch(`/pagina${navPage}.html`)
-      .then(response => response.text())
-      .then(body => {
-        document.querySelector('#modalpage').innerHTML = body
-        nextPage = navPage === '1' ? '2' : '1'
-        document.getElementById('nav-page').innerText = nextPage
-        const elCancelButton = document.getElementById('cancel-button')
-        navPage === '2'
-          ? elCancelButton.classList.add('green-button')
-          : elCancelButton.classList.remove('green-button')
-      })
-    doPushState(navPage)
+    navPage = newPage ? newPage : navPage === '1' ? '2' : '1'
+    nextPage = navPage === '1' ? '2' : '1'
+    fetchPage(navPage)
+    toggleCancelButton(navPage)
+    !pop && doPushState(navPage)
+    document.getElementById('nav-page').innerText = nextPage
   }
 }
 
@@ -35,10 +31,12 @@ const doPushState = navPage => {
 }
 
 //navigate with browser buttons
-window.addEventListener('popstate', event => navigate(event.state.navPage))
+window.addEventListener('popstate', event => {
+  return navigate(event.state.navPage, true)
+})
 
 const openModal = () => (
-  (document.getElementById('mymodal').style.display = 'block'), navigate()
+  (document.getElementById('mymodal').style.display = 'block'), navigate('1')
 )
 
 const closeModal = () => {
@@ -49,4 +47,31 @@ const closeModal = () => {
 const toggleDisplay = elId => {
   const el = document.getElementById(elId)
   el.style.display = el.style.display === 'none' ? 'block' : 'none'
+}
+
+const toggleCancelButton = navPage => {
+  const elCancelButton = document.getElementById('cancel-button')
+  navPage === '2'
+    ? (elCancelButton.classList.add('green-button'),
+      elCancelButton.classList.remove('red-button'))
+    : (elCancelButton.classList.remove('green-button'),
+      elCancelButton.classList.add('red-button'))
+}
+
+const fetchPage = navPage => {
+  let modalPage = document.querySelector('#modalpage')
+  if (navPage === '1' && htmlPage1) modalPage.innerHTML = htmlPage1
+  if (navPage === '2' && htmlPage2) modalPage.innerHTML = htmlPage2
+  else {
+    fetch(`/pagina${navPage}.html`)
+      .then(response => response.text())
+      .then(body => {
+        modalPage.innerHTML = body
+        if (navPage === '1') {
+          htmlPage1 = body
+        } else if (navPage === '2') {
+          htmlPage2 = body
+        }
+      })
+  }
 }

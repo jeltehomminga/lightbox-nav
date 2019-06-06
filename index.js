@@ -5,7 +5,7 @@ let indexState = { navPage: '0' }
 
 navPage = indexState.navPage
 let title = `index`
-let path = `/index.html`
+let path = `/lightbox-nav/index.html`
 history.pushState(indexState, title, path)
 
 //navigate and fetch pages
@@ -26,7 +26,7 @@ const navigate = (newPage, pop) => {
 const doPushState = navPage => {
   let state = { navPage: navPage },
     title = `pagina${navPage}`,
-    path = navPage ? `/pagina${navPage}.html` : `/index.html`
+    path = navPage ? `/lightbox-nav/pagina${navPage}.html` : `/index.html`
   history.pushState(state, title, path)
 }
 
@@ -41,7 +41,7 @@ const openModal = () => (
 
 const closeModal = () => {
   document.getElementById('mymodal').style.display = 'none'
-  history.pushState(indexState, '', `/index.html`)
+  history.pushState(indexState, '', `/lightbox-nav/index.html`)
 }
 
 const toggleDisplay = elId => {

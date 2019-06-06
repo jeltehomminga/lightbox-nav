@@ -63,7 +63,7 @@ const fetchPage = navPage => {
   if (navPage === '1' && htmlPage1) modalPage.innerHTML = htmlPage1
   if (navPage === '2' && htmlPage2) modalPage.innerHTML = htmlPage2
   else {
-    fetch(`/pagina${navPage}.html`)
+    fetch(`/lightbox-nav/pagina${navPage}.html`)
       .then(response => response.text())
       .then(body => {
         modalPage.innerHTML = body

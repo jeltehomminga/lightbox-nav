@@ -1,0 +1,132 @@
+html,
+body {
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #20639b;
+}
+
+.lightbox-anchor {
+  padding: 20px;
+  text-decoration: none;
+  width: 100px;
+  margin: 40vh auto;
+  box-shadow: 0px 0px 50px white;
+  border-radius: 5px;
+}
+
+.lightbox-anchor > a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  margin-top: -20px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  width: 70%;
+  max-width: 800px;
+  border-radius: 3px;
+}
+
+.modal-content-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.image-container {
+  width: 25%;
+  display: flex;
+  align-items: center;
+}
+
+.shadow-box-animation {
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 25px whitesmoke;
+  transition-duration: 0.3s;
+  transition-property: box-shadow, transform;
+}
+.shadow-box-animation:hover,
+.shadow-box-animation:focus,
+.shadow-box-animation:active {
+  box-shadow: 3px 15px 15px -15px rgba(0, 0, 24, 0.3);
+  transform: scale(1.01);
+}
+
+.et-info-container {
+  width: 70%;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+#page2,
+#mymodal {
+  display: none;
+}
+
+.green-button svg path {
+  fill: #3caea3;
+}
+
+.red-button svg path {
+  fill: #ed553b;
+}
+
+.button-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+#cancel-button {
+  position: relative;
+  right: -30px;
+  top: -30px;
+  width: 45px;
+  height: auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+.nav-page-container {
+  text-align: right;
+}
+
+@media screen and (max-width: 650px) {
+  body {
+    font-size: 85%;
+  }
+
+  .modal-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

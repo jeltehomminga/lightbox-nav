@@ -1,5 +1,5 @@
 const prefix = '/lightbox-nav'
-// const prefix = window.location.origin
+// const prefix = ''
 
 //set intial state for browser navigation
 let htmlPage1 = ''

@@ -88,6 +88,10 @@ img {
   display: none;
 }
 
+.spacer {
+  height: 45px;
+}
+
 .green-button svg path {
   fill: #3caea3;
 }

@@ -1,3 +1,6 @@
+// const prefix = '/lightbox-nav'
+const prefix = window.location.origin
+
 //set intial state for browser navigation
 let htmlPage1 = ''
 let htmlPage2 = ''
@@ -5,7 +8,7 @@ let indexState = { navPage: '0' }
 
 navPage = indexState.navPage
 let title = `index`
-let path = `/lightbox-nav/index.html`
+let path = `${prefix}/index.html`
 history.pushState(indexState, title, path)
 
 //navigate and fetch pages
@@ -26,7 +29,7 @@ const navigate = (newPage, pop) => {
 const doPushState = navPage => {
   let state = { navPage: navPage },
     title = `pagina${navPage}`,
-    path = navPage ? `/lightbox-nav/pagina${navPage}.html` : `/index.html`
+    path = navPage ? `${prefix}/pagina${navPage}.html` : `/index.html`
   history.pushState(state, title, path)
 }
 
@@ -41,7 +44,7 @@ const openModal = () => (
 
 const closeModal = () => {
   document.getElementById('mymodal').style.display = 'none'
-  history.pushState(indexState, '', `/lightbox-nav/index.html`)
+  history.pushState(indexState, '', `${prefix}/index.html`)
 }
 
 const toggleDisplay = elId => {
@@ -63,9 +66,11 @@ const fetchPage = navPage => {
   if (navPage === '1' && htmlPage1) modalPage.innerHTML = htmlPage1
   if (navPage === '2' && htmlPage2) modalPage.innerHTML = htmlPage2
   else {
-    fetch(`/lightbox-nav/pagina${navPage}.html`)
+    fetch(`${prefix}/pagina${navPage}.html`)
       .then(response => response.text())
-      .then(body => {
+      .then(html => {
+        htmlSplit = html.split('article')
+        let body = htmlSplit[1].slice(1, htmlSplit[1].length - 2)
         modalPage.innerHTML = body
         if (navPage === '1') {
           htmlPage1 = body
